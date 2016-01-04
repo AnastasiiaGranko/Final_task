@@ -6,3 +6,66 @@
  * User: Anastasiia Granko
  * Date: 04.01.2016
  */
+
+/**
+ * Implements hook_permission().
+ */
+function final_task_permission() {
+  return array(
+    'admin final_task' => array(
+      'title' => t('Administration of final_task'),
+      'description' => t('Users of final_task'),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function final_task_menu() {
+  $items = array();
+  $items['final_task'] = array(
+    'title' => 'Registration Form',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('final_task_page_form'),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'main-menu',
+  );
+ return $items;
+}
+
+function final_task_page_form($form, $form_state) {
+  $form = array();
+  $form['name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your name'),
+    '#size' => 20,
+    '#required' => TRUE
+  );
+  $form['login'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your login'),
+    '#size' => 20,
+    '#required' => TRUE
+  );
+  $form['mail'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your mail'),
+    '#size' => 20,
+    '#required' => TRUE
+  );
+  $form['pass'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your password'),
+    '#size' => 20,
+    '#required' => TRUE
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Log in'),
+    );
+  return $form;
+}
