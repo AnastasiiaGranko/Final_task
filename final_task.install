@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function final_task_schema() {
+  $schema['final_task_table'] = array(
+    'description' => t('Table for Final Task module'),
+    'fields' => array(
+      'id'  => array(
+        'type' => 'serial',
+         'unsigned' => TRUE,
+         'not null' => TRUE,
+        'description' => t('Creator user\'s {users}.uid.'),
+      ),
+        'name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Name of the person.',
+      ),
+      'login' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Login of the person.',
+      ),
+      'mail' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Email of the person.',
+      ),
+      'pass' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Password of the person.',
+      ),
+      ),
+    'primary key' => array('id'),
+);
+  return $schema;
+}

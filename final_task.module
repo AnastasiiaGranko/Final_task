@@ -37,6 +37,9 @@ function final_task_menu() {
  return $items;
 }
 
+/**
+ * Implements hook_form().
+ */
 function final_task_page_form($form, $form_state) {
   $form = array();
   $form['name'] = array(
