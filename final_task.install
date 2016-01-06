@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * @file
+ * Contains database schema description.
+ * User: Anastasiia Granko
+ * Date: 04.01.2016
+ */
+
+/**
  * Implements hook_schema().
  */
 function final_task_schema() {
