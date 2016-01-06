@@ -4,3 +4,4 @@ version = 7.x-1.x-dev
 core = 7.x
 files[] = final_task.module
 files[] = final_task.install
+dependencies[] = ctools
