@@ -13,12 +13,11 @@
 function final_task_permission() {
   return array(
     'admin final_task' => array(
-      'title'       => t('Administration of final_task'),
+      'title' => t('Administration of final_task'),
       'description' => t('Users of final_task'),
     ),
   );
 }
-
 
 /**
  * Implements hook_menu().
@@ -26,15 +25,15 @@ function final_task_permission() {
 function final_task_menu() {
   $items = array();
   $items['final_task'] = array(
-    'title'           => 'Registration Form',
-    'page callback'   => 'drupal_get_form',
-    'page arguments'  => array('final_task_page_form'),
+    'title' => 'Registration Form',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('final_task_page_form'),
     'access callback' => TRUE,
-    'expanded'        => TRUE,
-    'type'            => MENU_NORMAL_ITEM,
-    'menu_name'       => 'main-menu',
+    'expanded' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'main-menu',
   );
- return $items;
+  return $items;
 }
 
 /**
@@ -43,33 +42,33 @@ function final_task_menu() {
 function final_task_page_form($form, $form_state) {
   $form = array();
   $form['name'] = array(
-    '#type'     => 'textfield',
-    '#title'    => t('Your name'),
-    '#size'     => 20,
+    '#type' => 'textfield',
+    '#title' => t('Your name'),
+    '#size' => 20,
     '#required' => TRUE
   );
   $form['login'] = array(
-    '#type'     => 'textfield',
-    '#title'    => t('Your login'),
-    '#size'     => 20,
+    '#type' => 'textfield',
+    '#title' => t('Your login'),
+    '#size' => 20,
     '#required' => TRUE
   );
   $form['mail'] = array(
-    '#type'     => 'textfield',
-    '#title'    => t('Your mail'),
-    '#size'     => 20,
+    '#type' => 'textfield',
+    '#title' => t('Your mail'),
+    '#size' => 20,
     '#required' => TRUE
   );
   $form['pass'] = array(
-    '#type'     => 'textfield',
-    '#title'    => t('Your password'),
-    '#size'     => 20,
+    '#type' => 'textfield',
+    '#title' => t('Your password'),
+    '#size' => 20,
     '#required' => TRUE
   );
   $form['submit'] = array(
-    '#type'  => 'submit',
+    '#type' => 'submit',
     '#value' => t('Log in'),
-    );
+  );
   return $form;
 }
 
@@ -78,32 +77,25 @@ function final_task_page_form($form, $form_state) {
  */
 function final_task_page_form_validate($form, $form_state) {
   $login_entered = $form_state['values']['login'];
-
   $query = db_select('final_task_table', 'f');
   $query->fields('f', array('fid'));
   $query->condition('f.login', $login_entered);
-
-  $row_count = $query->countQuery()->execute()->fetchField(); 
-
+  $row_count = $query->countQuery()->execute()->fetchField();
   if (isset($row_count) && ($row_count > 0)) {
     form_set_error('login', t('This login already exists, please try with another login!'));
   }
- 
   if (filter_var($form_state['values']['mail'], FILTER_VALIDATE_EMAIL) == FALSE) {
     form_set_error('mail', t('It is not a valid email address.' . '<br>' . 'You should use email like this: example@domainname'));
   }
   if (strlen($form_state['values']['pass']) < 10) {
     form_set_error('pass', t('Please enter minimum 10 charecters of password'));
   }
-  
 }
-
 
 /*
  * Submit function for final_task_page_form.
  */
 function final_task_page_form_submit($form, &$form_state) {
-    
   if (final_task_db_insert($form)) {
     drupal_set_message(t('@name, you are registered!', array('@name' => $form['name']['#value'])));
   }
@@ -116,13 +108,22 @@ function final_task_page_form_submit($form, &$form_state) {
  * Function for recording data to the database table.
  */
 function final_task_db_insert($form) {
-    $return_value = db_insert('final_task_table')
+  $return_value = db_insert('final_task_table')
       ->fields(array(
-        'name'  => "{$form['name']['#value']}",
+        'name' => "{$form['name']['#value']}",
         'login' => "{$form['login']['#value']}",
-        'mail'  => "{$form['mail']['#value']}",
-        'pass'  => "{$form['pass']['#value']}",
+        'mail' => "{$form['mail']['#value']}",
+        'pass' => "{$form['pass']['#value']}",
       ))
       ->execute();
- return $return_value;
+  return $return_value;
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function final_task_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' && !empty($plugin)) {
+    return 'plugins/' . $plugin;
+  }
 }
