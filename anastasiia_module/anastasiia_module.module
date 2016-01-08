@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Anastasiia module feature.
- */
-
-include_once 'anastasiia_module.features.inc';
