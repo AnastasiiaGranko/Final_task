@@ -10,22 +10,22 @@
 function anastasiia_module_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: main-menu_final-task:http://localhost:8080/final_task_test.
-  $menu_links['main-menu_final-task:http://localhost:8080/final_task_test'] = array(
+  // Exported menu link: main-menu_final-task:final_task_test.
+  $menu_links['main-menu_final-task:final_task_test'] = array(
     'menu_name' => 'main-menu',
-    'link_path' => 'http://localhost:8080/final_task_test',
-    'router_path' => '',
+    'link_path' => 'final_task_test',
+    'router_path' => 'final_task_test',
     'link_title' => 'Final Task',
     'options' => array(
       'attributes' => array(
         'title' => '',
       ),
       'alter' => TRUE,
-      'identifier' => 'main-menu_final-task:http://localhost:8080/final_task_test',
+      'identifier' => 'main-menu_final-task:final_task_test',
     ),
     'module' => 'menu',
     'hidden' => 0,
-    'external' => 1,
+    'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
     'weight' => 0,
