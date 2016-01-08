@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the final_task_module feature.
+ */
+
+include_once 'final_task_module.features.inc';

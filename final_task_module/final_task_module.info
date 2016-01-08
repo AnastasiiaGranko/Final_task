@@ -1,0 +1,16 @@
+name = final_task_module
+description = Feature of final task
+core = 7.x
+package = Features
+version = 7.x-1.0
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = final_task
+dependencies[] = menu
+dependencies[] = page_manager
+features[ctools][] = page_manager:pages_default:1
+features[features_api][] = api:2
+features[menu_links][] = main-menu_final-task:final_task_test
+features[page_manager_pages][] = final_task
+features_exclude[dependencies][mmd_feature] = mmd_feature
+project path = /home/dev1/NetBeansProjects/Drup/sites/all/modules/final_task
