@@ -20,6 +20,15 @@ function final_task_permission() {
 }
 
 /**
+ * Implements hook_ctools_plugin_directory().
+ */
+function final_task_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' && !empty($plugin)) {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
  * Implements hook_menu().
  */
 function final_task_menu() {
@@ -117,13 +126,4 @@ function final_task_db_insert($form) {
       ))
       ->execute();
   return $return_value;
-}
-
-/**
- * Implements hook_ctools_plugin_directory().
- */
-function final_task_ctools_plugin_directory($module, $plugin) {
-  if ($module == 'ctools' && !empty($plugin)) {
-    return 'plugins/' . $plugin;
-  }
 }
